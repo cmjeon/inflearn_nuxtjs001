@@ -1,5 +1,7 @@
 <template>
-  <div><h1>메인페이지</h1></div>
+  <div>
+    <p>상품 페이지입니다</p>
+  </div>
 </template>
 
 <script>
