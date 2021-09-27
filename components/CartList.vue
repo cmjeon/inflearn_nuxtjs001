@@ -1,22 +1,28 @@
 <template>
-  <div class="container">
-    <h1 class="list-title">카트 페이지</h1>
-    <CartList></CartList>
-    <div class="extra-panel">
-      <button>구매하기</button>
-    </div>
+  <div class="list-wrapper">
+    <ul>
+      <li
+        v-for="cartItem in $store.state.cartItems"
+        :key="cartItem.id"
+        class="list-item"
+      >
+        <img :src="cartItem.imageUrl" :alt="cartItem.name" class="thumbnail" />
+        <div class="description">
+          <p>{{ cartItem.name }}</p>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import CartList from '@/components/CartList.vue'
-// import { FETCH_CART_ITEMS } from '@/store'
+import { FETCH_CART_ITEMS } from '@/store'
 export default {
   // async asyncData({ store }) {
   //   await store.dispatch(FETCH_CART_ITEMS)
   // },
-  components: {
-    CartList,
+  async fetch() {
+    await this.$store.dispatch(FETCH_CART_ITEMS)
   },
 }
 </script>

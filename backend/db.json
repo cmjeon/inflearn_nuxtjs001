@@ -199,6 +199,12 @@
       "name": "Awesome Metal Hat",
       "price": "376.00",
       "imageUrl": "http://placeimg.com/640/480/fashion"
+    },
+    {
+      "id": 6,
+      "name": "Handmade Granite Mouse",
+      "price": "591.00",
+      "imageUrl": "http://placeimg.com/640/480/fashion"
     }
   ]
 }
