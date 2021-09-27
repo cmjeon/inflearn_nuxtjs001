@@ -1,9 +1,19 @@
 <template>
   <div class="app">
     <main>
-      <div>
-        <input type="text" />
-      </div>
+      <!-- @ 를 이용한 방법
+        <SearchInput
+          :search-keyword="searchKeyword"
+          @input="updateSearchKeyword"
+        ></SearchInput>
+      @ 를 이용한 방법 -->
+      <!-- v-model 을 이용한 방법 -->
+      <SearchInput
+        v-model="searchKeyword"
+        :search-keyword="searchKeyword"
+        @search="searchProducts"
+      ></SearchInput>
+      <!-- v-model 을 이용한 방법 -->
       <ul>
         <li
           v-for="product in products"
@@ -26,8 +36,13 @@
 
 <script>
 import axios from 'axios'
+import SearchInput from '~/components/SearchInput.vue'
+import { fetchProductsByKeyword } from '~/api/index'
 
 export default {
+  components: {
+    SearchInput,
+  },
   async asyncData() {
     const response = await axios.get('http://localhost:3000/products')
     const products = response.data.map((item) => {
@@ -41,13 +56,28 @@ export default {
   data() {
     return {
       products: [],
+      searchKeyword: '',
     }
   },
   async created() {},
   methods: {
     moveToDetailPage(id) {
-      console.log(id)
       this.$router.push(`detail/${id}`)
+    },
+    /* @ 를 이용한 방법
+    updateSearchKeyword(keyword) {
+      this.searchKeyword = keyword
+    },
+    */
+    async searchProducts() {
+      const response = await fetchProductsByKeyword(this.searchKeyword)
+      console.log(response.data)
+      this.products = response.data.map((item) => {
+        return {
+          ...item,
+          imageUrl: `${item.imageUrl}?random=${Math.random()}`,
+        }
+      })
     },
   },
 }

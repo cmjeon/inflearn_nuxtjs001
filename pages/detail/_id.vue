@@ -26,6 +26,9 @@ export default {
     const product = response.data
     return { product }
   },
+  methods: {
+    addToCart() {},
+  },
 }
 </script>
 
