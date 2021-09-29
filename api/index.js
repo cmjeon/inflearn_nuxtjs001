@@ -26,7 +26,12 @@ function fetchCartItems() {
 }
 
 function createCartItem(cartItem) {
-  return instance.post('/carts', cartItem)
+  const config = {
+    headers: {
+      'content-type': 'application/json'
+    }
+  }
+  return instance.post('/carts', cartItem, config)
 }
 
 export { fetchProducts, fetchProductById, fetchProductsByKeyword, fetchCartItems, createCartItem }
