@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import SearchInput from '~/components/SearchInput.vue'
 import { fetchProducts, fetchProductsByKeyword } from '~/api/index'
+import SearchInput from '~/components/SearchInput.vue'
 
 export default {
   components: {
